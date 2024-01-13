@@ -1,16 +1,14 @@
-import { useParams } from "react-router-dom";
-import useGame from "../hooks/useGame";
 import {
   Box,
-  Button,
-  Collapse,
   Heading,
   Skeleton,
-  SkeletonText,
-  Text,
+  SkeletonText
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
+import GameAttributes from "../components/GameAttributes";
+import useGame from "../hooks/useGame";
 
 const GameDetails = () => {
   const [showDescription, setShowDescription] = useState(false);
@@ -33,6 +31,7 @@ const GameDetails = () => {
     <>
       <Heading>{game.name}</Heading>
       <ExpandableText>{game.description_raw}</ExpandableText>
+      <GameAttributes game={game} />
     </>
   );
 };

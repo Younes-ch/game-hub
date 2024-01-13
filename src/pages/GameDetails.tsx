@@ -1,21 +1,13 @@
-import {
-  Box,
-  Heading,
-  Skeleton,
-  SkeletonText
-} from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Heading, Skeleton, SkeletonText } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import useGame from "../hooks/useGame";
+import GameTrailer from "../components/GameTrailer";
 
 const GameDetails = () => {
-  const [showDescription, setShowDescription] = useState(false);
   const { slug } = useParams();
   const { data: game, isLoading, error } = useGame(slug!);
-
-  const handleToggle = () => setShowDescription(!showDescription);
 
   if (isLoading)
     return (
@@ -32,6 +24,7 @@ const GameDetails = () => {
       <Heading>{game.name}</Heading>
       <ExpandableText>{game.description_raw}</ExpandableText>
       <GameAttributes game={game} />
+      <GameTrailer gameId={game.id} />
     </>
   );
 };
